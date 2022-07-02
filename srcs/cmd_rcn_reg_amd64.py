@@ -8,6 +8,9 @@ def __lldb_init_module(debugger, internal_dict):
         + '.command ' + 'rcn_reg')
 
 def command(debugger, command, exe_ctx, result, internal_dict):
-    reader = RegisterReaderLLDB(exe_ctx)
+    aliases = {
+        'eflags': 'rflags'
+        }
+    reader = RegisterReaderLLDB(exe_ctx, aliases)
     printer = RegisterPrinterAMD64(reader)
     printer.print()
