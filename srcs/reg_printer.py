@@ -26,8 +26,13 @@ class RegisterPrinter(metaclass = ABCMeta):
         reg_value = reader.read(name)
         print(f' {name:3s}: {reg_value:04x}', end = '')
 
-    def _print_flag(self, name, mask, flag):
+    def _print_flag(self, name, flag, start, end):
         reader = self.__reader
         reg_value = reader.read(name)
-        reg_flag = flag if reg_value & mask else flag.lower()
-        print(f' {reg_flag:1s}', end = '')
+        mask = (1 << (end + 1)) - (1 << start)
+        if (end - start) == 0:
+            reg_flag = flag if reg_value & mask else flag.lower()
+            print(f' {reg_flag:s}', end = '')
+        else:
+            flag_value = (reg_value & mask) >> start
+            print(f' {flag:s}={flag_value:d}', end = '')

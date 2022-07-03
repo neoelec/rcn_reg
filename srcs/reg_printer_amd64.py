@@ -13,40 +13,58 @@ class RegisterPrinterAMD64(RegisterPrinter):
         self.__print_3rd_line()
         self.__print_4th_line()
         self.__print_5th_line()
+        self.__print_6th_line()
 
     def __print_1st_line(cls):
-        name_list = ['rax', 'rbx', 'rcx', 'rdx']
+        name_list = ['rax', 'rbx', 'rcx', 'rdx', 'rsi']
         for name in name_list:
             super()._print_64(name)
-        flag_list = [
-            (0x0800, 'O'), (0x0400, 'D'), (0x0200, 'I'), (0x0100, 'T'),
-            (0x0080, 'S'), (0x0040, 'Z'), (0x0010, 'A'),
-            (0x0004, 'P'), (0x0001, 'C')
-            ]
-        for (mask, flag) in flag_list:
-            super()._print_flag('eflags', mask, flag)
         print()
 
     def __print_2nd_line(cls):
-        name_list = ['rsi', 'rdi', 'rbp', 'rsp', 'rip']
+        name_list = ['rdi', 'r8', 'r9', 'r10', 'r11']
         for name in name_list:
             super()._print_64(name)
         print()
 
     def __print_3rd_line(cls):
-        name_list = ['r8', 'r9', 'r10', 'r11', 'r12']
+        name_list = ['r12', 'r13', 'r14', 'r15']
         for name in name_list:
             super()._print_64(name)
         print()
 
     def __print_4th_line(cls):
-        name_list = ['r13', 'r14', 'r15']
-        for name in name_list:
-            super()._print_64(name)
-        print()
-
-    def __print_5th_line(cls):
         name_list = ['cs', 'ds', 'es', 'fs', 'gs', 'ss']
         for name in name_list:
             super()._print_16(name)
         print()
+
+    def __print_5th_line(cls):
+        name_list = ['rbp', 'rsp', 'rip']
+        for name in name_list:
+            super()._print_64(name)
+        print()
+
+    def __print_6th_line(cls):
+        flag_list = [
+            ('CF', 0, 0),
+            ('PF', 2, 2),
+            ('AF', 4, 4),
+            ('ZF', 6, 6),
+            ('SF', 7, 7),
+            ('TF', 8, 8),
+            ('IF', 9, 9),
+            ('DF', 10, 10),
+            ('OF', 11, 11),
+            ('NT', 14, 14),
+            ('RF', 16, 16),
+            ('VM', 17, 17),
+            ('AC', 18, 18),
+            ('VIF', 19, 19),
+            ('VIP', 20, 20),
+            ('ID', 21, 21)
+            ]
+        print(' [', end = '')
+        for (flag, start, end) in flag_list:
+            super()._print_flag('eflags', flag, start, end)
+        print(' ]')
