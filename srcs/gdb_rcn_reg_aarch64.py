@@ -23,6 +23,7 @@ class GDBModifierAArch64:
     def modiry(self, name, reg_raw):
         if name != 'cpsr':
             reg_val = int(reg_raw.split()[0], 0)
+            reg_val &= 0xFFFFFFFFFFFFFFFF
         else:
             reg_val = self.__cpsr(reg_raw)
         return reg_val

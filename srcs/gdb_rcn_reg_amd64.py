@@ -23,6 +23,7 @@ class GDBModifierAMD64:
     def modiry(self, name, reg_raw):
         if name != 'eflags':
             reg_val = int(reg_raw.split()[0], 0)
+            reg_val &= 0xFFFFFFFFFFFFFFFF
         else:
             reg_val = self.__eflags(reg_raw)
         return reg_val
