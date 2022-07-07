@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: Beerware
+# Copyright 2022 YOUNGJIN JOO <neoelec@gmail.com>
 
 import lldb
-from reg_reader import RegisterReader
+from rcn.reg_reader import RcnRegReader
 
 
-class RegisterReaderLLDB(RegisterReader):
+class RcnRegReaderLLDB(RcnRegReader):
     def __init__(self, exe_ctx, aliases):
         self.__register = exe_ctx.frame.register
         self.__aliases = aliases

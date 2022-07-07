@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: Beerware
+# Copyright 2022 YOUNGJIN JOO <neoelec@gmail.com>
 
 from abc import *
 
 
-class RegisterPrinter(metaclass = ABCMeta):
+class RcnRegPrinter(metaclass = ABCMeta):
     def __init__(self, reader):
         self.__reader = reader
 

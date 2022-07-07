@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: Beerware
+# Copyright 2022 YOUNGJIN JOO <neoelec@gmail.com>
 
 import gdb
 import os
-import sys
-sys.path.append(os.path.dirname(os.path.expanduser(__file__)))
-from reg_reader_gdb import RegisterReaderGDB
-from reg_printer_arm import RegisterPrinterArm
+from rcn.gdb.reg_reader import RcnRegReaderGDB
+from rcn.arm.reg_printer import RcnRegPrinterArm
 
 
 class GDBRCNRegisterArm(gdb.Command):
@@ -14,13 +13,13 @@ class GDBRCNRegisterArm(gdb.Command):
 
     def invoke(self, arg, from_tty):
         modifier = GDBModifierArm()
-        reader = RegisterReaderGDB(modifier)
-        printer = RegisterPrinterArm(reader)
+        reader = RcnRegReaderGDB(modifier)
+        printer = RcnRegPrinterArm(reader)
         printer.print()
 
 
 class GDBModifierArm:
-    def modiry(self, name, reg_raw):
+    def modify(self, name, reg_raw):
         reg_val = int(reg_raw.split()[0], 0)
         reg_val &= 0xFFFFFFFF
         return reg_val

@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: Beerware
+# Copyright 2022 YOUNGJIN JOO <neoelec@gmail.com>
 
-from reg_reader_lldb import RegisterReaderLLDB
-from reg_printer_arm import RegisterPrinterArm
+from rcn.lldb.reg_reader import RcnRegReaderLLDB
+from rcn.amd64.reg_printer import RcnRegPrinterAMD64
 
 def __lldb_init_module(debugger, internal_dict):
     debugger.HandleCommand('command script add -f ' + __name__
@@ -9,8 +10,8 @@ def __lldb_init_module(debugger, internal_dict):
 
 def command(debugger, command, exe_ctx, result, internal_dict):
     aliases = {
-        'dummy': 'unused'
+        'eflags': 'rflags'
         }
-    reader = RegisterReaderLLDB(exe_ctx, aliases)
-    printer = RegisterPrinterArm(reader)
+    reader = RcnRegReaderLLDB(exe_ctx, aliases)
+    printer = RcnRegPrinterAMD64(reader)
     printer.print()

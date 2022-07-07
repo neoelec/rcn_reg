@@ -1,11 +1,9 @@
 # SPDX-License-Identifier: Beerware
+# Copyright 2022 YOUNGJIN JOO <neoelec@gmail.com>
 
 import gdb
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.expanduser(__file__)))
-from reg_reader_gdb import RegisterReaderGDB
-from reg_printer_amd64 import RegisterPrinterAMD64
+from rcn.gdb.reg_reader import RcnRegReaderGDB
+from rcn.amd64.reg_printer import RcnRegPrinterAMD64
 
 
 class GDBRCNRegisterAMD64(gdb.Command):
@@ -14,13 +12,13 @@ class GDBRCNRegisterAMD64(gdb.Command):
 
     def invoke(self, arg, from_tty):
         modifier = GDBModifierAMD64()
-        reader = RegisterReaderGDB(modifier)
-        printer = RegisterPrinterAMD64(reader)
+        reader = RcnRegReaderGDB(modifier)
+        printer = RcnRegPrinterAMD64(reader)
         printer.print()
 
 
 class GDBModifierAMD64:
-    def modiry(self, name, reg_raw):
+    def modify(self, name, reg_raw):
         if name != 'eflags':
             reg_val = int(reg_raw.split()[0], 0)
             reg_val &= 0xFFFFFFFFFFFFFFFF

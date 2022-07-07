@@ -1,4 +1,4 @@
-source ~/.config/rcn_reg/gdb_rcn_reg_aarch64.py
+source gdbinit.py
 
 set prompt \033[31m(\033[90mgdb\033[31m) \033[0m
 
