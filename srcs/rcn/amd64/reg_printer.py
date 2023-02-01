@@ -64,8 +64,8 @@ class RcnRegPrinterAMD64(RcnRegPrinter):
             ('VIF', 19, 19),
             ('VIP', 20, 20),
             ('ID', 21, 21)
-            ]
-        print(' [', end = '')
+        ]
+        print(' [', end='')
         for (flag, start, end) in flag_list:
             super()._print_flag('eflags', flag, start, end)
         print(' ]')

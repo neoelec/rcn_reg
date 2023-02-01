@@ -4,7 +4,7 @@
 from abc import *
 
 
-class RcnRegReader(metaclass = ABCMeta):
+class RcnRegReader(metaclass=ABCMeta):
     @abstractmethod
     def read(self, name):
         pass

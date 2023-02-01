@@ -36,23 +36,23 @@ class RcnRegPrinterArm(RcnRegPrinter):
             ('I', 7, 7),
             ('A', 8, 8),
             ('E', 9, 9),
-            ]
-        print(' [', end = '')
+        ]
+        print(' [', end='')
         for (flag, start, end) in flag_list:
             super()._print_flag('cpsr', flag, start, end)
         cpsr = reader.read('cpsr')
         it = (cpsr >> 10) & 0x3F
         it = (it << 2) | ((cpsr >> 25) & 0x3)
-        print(f' IT={it:d}', end = '')
+        print(f' IT={it:d}', end='')
         ge = (cpsr >> 16) & 0xF
-        print(f' GE={ge:d}', end = '')
+        print(f' GE={ge:d}', end='')
         flag_list = [
             ('J', 24, 24),
             ('V', 28, 28),
             ('C', 29, 29),
             ('Z', 30, 30),
             ('N', 31, 31)
-            ]
+        ]
         for (flag, start, end) in flag_list:
             super()._print_flag('cpsr', flag, start, end)
         print(' ]')

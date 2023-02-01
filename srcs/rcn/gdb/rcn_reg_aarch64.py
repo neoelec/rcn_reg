@@ -8,7 +8,8 @@ from rcn.aarch64.reg_printer import RcnRegPrinterAArch64
 
 class GDBRCNRegisterAArch64(gdb.Command):
     def __init__(self):
-        super(GDBRCNRegisterAArch64, self).__init__('rcn_reg', gdb.COMMAND_USER)
+        super(GDBRCNRegisterAArch64, self).__init__(
+            'rcn_reg', gdb.COMMAND_USER)
 
     def invoke(self, arg, from_tty):
         modifier = GDBModifierAArch64()
@@ -51,7 +52,7 @@ class GDBModifierAArch64:
             'C': 1 << 29,
             'Z': 1 << 30,
             'N': 1 << 31
-            }
+        }
         reg_val = 0x0
         for bit in reg_raw.split():
             reg_val |= 0x0 if bit not in mask else mask[bit]

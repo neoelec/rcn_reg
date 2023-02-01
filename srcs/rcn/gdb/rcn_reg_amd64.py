@@ -44,7 +44,7 @@ class GDBModifierAMD64:
             'VIF': 1 << 19,
             'VIP': 1 << 20,
             'ID': 1 << 21
-            }
+        }
         reg_val = 0x0
         for bit in reg_raw.split():
             reg_val |= 0x0 if bit not in mask else mask[bit]

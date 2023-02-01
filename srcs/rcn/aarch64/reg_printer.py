@@ -52,8 +52,8 @@ class RcnRegPrinterAArch64(RcnRegPrinter):
             ('C', 29, 29),
             ('Z', 30, 30),
             ('N', 31, 31)
-            ]
-        print(' [', end = '')
+        ]
+        print(' [', end='')
         for (flag, start, end) in flag_list:
             super()._print_flag('cpsr', flag, start, end)
         print(' ]')
