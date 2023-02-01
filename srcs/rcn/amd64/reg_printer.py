@@ -16,37 +16,37 @@ class RcnRegPrinterAMD64(RcnRegPrinter):
         self.__print_5th_line()
         self.__print_6th_line()
 
-    def __print_1st_line(cls):
+    def __print_1st_line(self):
         name_list = ['rax', 'rbx', 'rcx', 'rdx', 'rsi']
         for name in name_list:
             super()._print_64(name)
         print()
 
-    def __print_2nd_line(cls):
+    def __print_2nd_line(self):
         name_list = ['rdi', 'r8', 'r9', 'r10', 'r11']
         for name in name_list:
             super()._print_64(name)
         print()
 
-    def __print_3rd_line(cls):
+    def __print_3rd_line(self):
         name_list = ['r12', 'r13', 'r14', 'r15']
         for name in name_list:
             super()._print_64(name)
         print()
 
-    def __print_4th_line(cls):
+    def __print_4th_line(self):
         name_list = ['cs', 'ds', 'es', 'fs', 'gs', 'ss']
         for name in name_list:
             super()._print_16(name)
         print()
 
-    def __print_5th_line(cls):
+    def __print_5th_line(self):
         name_list = ['rbp', 'rsp', 'rip']
         for name in name_list:
             super()._print_64(name)
         print()
 
-    def __print_6th_line(cls):
+    def __print_6th_line(self):
         flag_list = [
             ('CF', 0, 0),
             ('PF', 2, 2),

@@ -15,20 +15,20 @@ class RcnRegPrinterArm(RcnRegPrinter):
         self.__print_lr_sp_pc()
         self.__print_cpsr()
 
-    def __print_print_reg(cls, start, end):
+    def __print_print_reg(self, start, end):
         for idx in range(start, end):
             reg = 'r' + str(idx)
             super()._print_32(reg)
         print()
 
-    def __print_lr_sp_pc(cls):
+    def __print_lr_sp_pc(self):
         name_list = ['sp', 'lr', 'pc']
         for name in name_list:
             super()._print_32(name)
         print()
 
-    def __print_cpsr(cls):
-        reader = cls.__reader
+    def __print_cpsr(self):
+        reader = self.__reader
         flag_list = [
             ('M', 0, 4),
             ('T', 5, 5),

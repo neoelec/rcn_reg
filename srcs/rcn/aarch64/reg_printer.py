@@ -19,19 +19,19 @@ class RcnRegPrinterAArch64(RcnRegPrinter):
         self.__print_lr_sp_pc()
         self.__print_cpsr()
 
-    def __print_print_reg(cls, start, end):
+    def __print_print_reg(self, start, end):
         for idx in range(start, end):
             reg = 'x' + str(idx)
             super()._print_64(reg)
         print()
 
-    def __print_lr_sp_pc(cls):
+    def __print_lr_sp_pc(self):
         name_list = ['lr', 'sp', 'pc']
         for name in name_list:
             super()._print_64(name)
         print()
 
-    def __print_cpsr(cls):
+    def __print_cpsr(self):
         flag_list = [
             ('SP', 0, 0),
             ('EL', 2, 3),

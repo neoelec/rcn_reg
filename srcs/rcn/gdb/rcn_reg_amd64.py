@@ -26,7 +26,7 @@ class GDBModifierAMD64:
             reg_val = self.__eflags(reg_raw)
         return reg_val
 
-    def __eflags(cls, reg_raw):
+    def __eflags(self, reg_raw):
         mask = {
             'CF': 1 << 0,
             'PF': 1 << 2,

@@ -26,7 +26,7 @@ class GDBModifierAArch64:
             reg_val = self.__cpsr(reg_raw)
         return reg_val
 
-    def __cpsr(cls, reg_raw):
+    def __cpsr(self, reg_raw):
         mask = {
             'SP': 1 << 0,
             'EL=1': 1 << 2,
